@@ -40,6 +40,7 @@
       <HintPath>C:\Program Files\System.Data.SQLite\2010\bin\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,13 +59,41 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BytesToInt.cs" />
-    <Compile Include="ChatSession.cs" />
-    <Compile Include="ClassBroadCast.cs" />
-    <Compile Include="ClassSendFile.cs" />
-    <Compile Include="ConnectionDB.cs" />
+    <Compile Include="DisplayPic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DisplayPic.Designer.cs">
+      <DependentUpon>DisplayPic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\INickDAL.cs" />
+    <Compile Include="Model\Display.cs" />
+    <Compile Include="DAL\NickDAL.cs" />
+    <Compile Include="Send\ClassSendPic.cs" />
+    <Compile Include="DAL\DetailDAL.cs" />
+    <Compile Include="DAL\IDetailDAL.cs" />
+    <Compile Include="Receive\FileNameHead.cs" />
+    <Compile Include="MesHistory.xaml.cs">
+      <DependentUpon>MesHistory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Receive\ChatSession.cs" />
+    <Compile Include="ScreenCut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScreenCut.Designer.cs">
+      <DependentUpon>ScreenCut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SendPic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SendPic.Designer.cs">
+      <DependentUpon>SendPic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Send\ClassBroadCast.cs" />
+    <Compile Include="Send\ClassSendFile.cs" />
+    <Compile Include="SQL\ConnectionDB.cs" />
     <Compile Include="Model\Detail.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="SQL\SqlHelper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -77,6 +106,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MesHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -92,9 +125,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="DisplayPic.resx">
+      <DependentUpon>DisplayPic.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScreenCut.resx">
+      <DependentUpon>ScreenCut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SendPic.resx">
+      <DependentUpon>SendPic.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

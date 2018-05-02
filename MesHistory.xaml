@@ -1,0 +1,24 @@
+﻿<Window x:Class="BS.MesHistory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MesHistory" Height="413.433" Width="320" WindowStyle="ToolWindow"  Loaded="History_Loaded" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        
+        <ListView Grid.Row="0" x:Name="Lv_History" HorizontalAlignment="Left" Width="auto" Height="auto" VerticalAlignment="Top" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="历史记录" Width="auto"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel  Grid.Row="1" HorizontalAlignment="Center" Width="auto" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button Content="关闭" FontSize="14" Click="btClose"/>
+            <TextBlock Text="  "/>
+            <Button Content="清空" FontSize="14" Click="Button_Click_1"/>
+        </StackPanel>
+    </Grid>
+</Window>

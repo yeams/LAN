@@ -21,10 +21,15 @@ namespace BS
             SQLiteCommand cmdCreateTable = null;
             conn.Open();
 
-            string student = "CREATE TABLE IF NOT EXISTS Detail(Did INTEGER PRIMARY KEY AUTOINCREMENT, Duser varchar(30) NOT NULL, Dspeak varchar(30) NOT NULL, Dtype INTEGER NOT NULL, Dcont varchar(150) NOT NULL, Dread INTEGER NOT NULL, Ddatetime datetime NOT NULL default(getDate()));";
-            cmdCreateTable = new SQLiteCommand(student, conn);
+            string detail = "CREATE TABLE IF NOT EXISTS Detail(Did INTEGER PRIMARY KEY AUTOINCREMENT, Duser varchar(30) NOT NULL, Dspeak varchar(30) NOT NULL, Dtype INTEGER NOT NULL, Dcont varchar(150) NOT NULL, Dread INTEGER NOT NULL, Ddatetime datetime NOT NULL default (datetime('now', 'localtime')));";
+            cmdCreateTable = new SQLiteCommand(detail, conn);
             cmdCreateTable.ExecuteNonQuery();
 
+            string nick = "CREATE TABLE IF NOT EXISTS Nick(MacAdd varchar(40) PRIMARY KEY NOT NULL, Nickname varchar(40) NOT NULL);";
+            cmdCreateTable = new SQLiteCommand(nick, conn);
+            cmdCreateTable.ExecuteNonQuery();
+
+            cmdCreateTable.Dispose();
             conn.Close();
         }
     }
