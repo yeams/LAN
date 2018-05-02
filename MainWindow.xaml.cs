@@ -29,7 +29,8 @@ namespace BS
         IPAddress[] ipv4 = new IPAddress[6];//本机所有ipv4地址
         User userNow = null;//正在通信的客户端的ip地址及主机名
         User editNick = null;//准备修改昵称的用户
-        DetailDAL IntoDB = new DetailDAL();//实例化对数据库的操作类DetailDAL
+        DetailDAL IntoDB = new DetailDAL();//实例化对DB中消息表的操作类DetailDAL
+        NickDAL test = new NickDAL();//实例化对DB中昵称表的操作类DetailDAL
         Detail s = null;//一条需要插入数据库的信息
 
         //定义作为服务器端接受信息套接字
@@ -86,7 +87,6 @@ namespace BS
             string name = null;
             UdpClient server = new UdpClient(8001);//在本地8001端口监听
             IPEndPoint ep = new IPEndPoint(IPAddress.Any, 0);//监听任意ip地址的udp报文
-            NickDAL test = new NickDAL();
 
             bool completed = false;
             while (!completed)
@@ -418,7 +418,7 @@ namespace BS
 
         private void ChangeNickName(object sender, RoutedEventArgs e)
         {
-            User editNick = ListUser.SelectedItem as User;
+            editNick = ListUser.SelectedItem as User;
             tb_EditNick.Visibility = Visibility.Visible;
             bt_CancelEdit.Visibility = Visibility.Visible;
             bt_CompelteEdit.Visibility = Visibility.Visible;
@@ -437,6 +437,22 @@ namespace BS
             tb_EditNick.Visibility = Visibility.Hidden;
             bt_CancelEdit.Visibility = Visibility.Hidden;
             bt_CompelteEdit.Visibility = Visibility.Hidden;
+
+            string tmp = tb_EditNick.Text.ToString();
+            if (tmp != null)
+            {
+                try
+                {
+                    userlist.Remove(editNick);
+                    ListUser.Items.Remove(editNick);
+                    editNick.nickname = tmp;
+                    ListUser.Items.Add(editNick);
+                    userlist.Add(editNick);
+                    test.EditNick(editNick);
+                }
+                catch { }
+            }
+
         }
 
         private void ListUser_MouseUp(object sender, MouseButtonEventArgs e)
