@@ -15,7 +15,7 @@ namespace BS
         int UnreadToRead(User obj);//修改对应未读变已读
         List<Detail> FindOne(User obj);//查找与某个人的聊天信息
         List<Detail> FindOneUnread(User obj);//查找与某人聊天的未读信息
-        List<string> FindUnread();//查找没有读过的聊天信息
+        List<string> FindUnread();//查找没有读过的聊天信息  没有被使用
 
     }
 }

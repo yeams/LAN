@@ -8,10 +8,10 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         
-        <ListView Grid.Row="0" x:Name="Lv_History" HorizontalAlignment="Left" Width="auto" Height="auto" VerticalAlignment="Top" >
+        <ListView Grid.Row="0" x:Name="Lv_History" HorizontalAlignment="Left" Width="auto" Height="auto" VerticalAlignment="Top" SelectionChanged="Lv_History_SelectionChanged" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="历史记录" Width="auto"/>
+                    <GridViewColumn Header="历史记录" Width="auto" DisplayMemberBinding="{Binding Path=Message}"/>
                 </GridView>
             </ListView.View>
         </ListView>

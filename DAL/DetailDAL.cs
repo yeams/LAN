@@ -87,7 +87,7 @@ namespace BS
             }
             return list;
         }
-        public List<string> FindUnread()
+        public List<string> FindUnread() //被使用
         {
             List<string> list = new List<string>();
             string sql = String.Format("select DISTINCT Duser from Detail where Dread = 0");

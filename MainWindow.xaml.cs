@@ -378,7 +378,7 @@ namespace BS
                     }));
                 }
             }
-        }
+        }//没有被使用
 
         private void btnHistory(object sender, RoutedEventArgs e)
         {

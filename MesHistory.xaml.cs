@@ -51,20 +51,36 @@ namespace BS
                 {
                     if (i.DetType == 0)
                     {
+                        
                         string mess = i.DetDatetim.ToLongTimeString().ToString() + " " + i.DetSpeak + ":" + i.DetCont;
-                        Lv_History.Items.Add(mess);
+                        Lv_History.Items.Add(new Display(0, mess, null));
                     }
                     else if (i.DetType == 1)
                     {
                         string mess = i.DetDatetim.ToLongTimeString().ToString() + " " + i.DetSpeak + ":文件：" + i.DetCont;
-                        Lv_History.Items.Add(mess);
+                        Lv_History.Items.Add(new Display(1, mess, i.DetCont));
                     }
                     else if (i.DetType == 2)
                     {
                         string mess = i.DetDatetim.ToLongTimeString().ToString() + " " + i.DetSpeak + ":截图：" + i.DetCont;
-                        Lv_History.Items.Add(mess);
+                        Lv_History.Items.Add(new Display(2, mess, i.DetCont));
                     }
                 }
+            }
+        }
+
+        private void Lv_History_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Display DetMess = Lv_History.SelectedItem as Display;
+            if (DetMess.Type == 1)
+            {
+                string path = DetMess.Path.Substring(0,DetMess.Path.LastIndexOf("\\"));
+                System.Diagnostics.Process.Start("explorer.exe", path);//调用explorer资源管理器打开
+            }
+            else if (DetMess.Type == 2)
+            {
+                DisplayPic showPicForm = new DisplayPic(DetMess.Path);
+                showPicForm.Show();
             }
         }
     }
