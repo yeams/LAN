@@ -241,7 +241,7 @@ namespace BS
                 socketSent.Close();
                 s = new Detail
                 {
-                    DetUser = userNow.u_name,
+                    DetMac = userNow.MacAdd,
                     DetSpeak = localName,
                     DetType = 0,
                     DetCont = content,
@@ -316,7 +316,7 @@ namespace BS
                 {
                     ipSent = new IPEndPoint(userNow.u_ip, 11000);//设置服务器ip地址和端口
 
-                    ClassSendFile sendFile = new ClassSendFile(fileDlg,userNow.u_name,localName);
+                    ClassSendFile sendFile = new ClassSendFile(fileDlg,userNow.MacAdd,localName);
                     ThreadPool.QueueUserWorkItem(sendFile.SendFile, ipSent);
                 }
                 catch
@@ -326,7 +326,7 @@ namespace BS
             }
         }
 
-        private void CheckUnread(object state)
+        private void CheckUnread(object state)//没有被使用
         {
             List<string> NameUnread = null;
 
@@ -378,7 +378,7 @@ namespace BS
                     }));
                 }
             }
-        }//没有被使用
+        }
 
         private void btnHistory(object sender, RoutedEventArgs e)
         {
@@ -388,7 +388,7 @@ namespace BS
 
         private void ScreenCutter(object sender, RoutedEventArgs e)
         {
-            ScreenCut cut = new ScreenCut(userNow.u_name, localName);
+            ScreenCut cut = new ScreenCut(userNow.MacAdd, localName);
             ipSent = new IPEndPoint(userNow.u_ip, 11000);//设置服务器ip地址和端口
             cut.ipsent = ipSent;
             cut.Show();

@@ -11,7 +11,7 @@ namespace BS
     {
         public int AddDetail(Detail obj)
         {
-            string add = string.Format("insert into Detail(Duser, Dspeak, Dtype, Dcont, Dread) values('{0}','{1}','{2}','{3}','{4}')", obj.DetUser, obj.DetSpeak, obj.DetType, obj.DetCont,obj.DetRead);
+            string add = string.Format("insert into Detail(Dmac, Dspeak, Dtype, Dcont, Dread) values('{0}','{1}','{2}','{3}','{4}')", obj.DetMac, obj.DetSpeak, obj.DetType, obj.DetCont, obj.DetRead);
             return SqlHelper.ExecuteNonQuery(add);
         }
 
@@ -29,18 +29,18 @@ namespace BS
 
         public int DeleteOne(User obj)
         {
-            string delete = String.Format("delete from Detail where Duser='{0}'", obj.u_name);
+            string delete = String.Format("delete from Detail where Dmac='{0}'", obj.MacAdd);
             return SqlHelper.ExecuteNonQuery(delete);
         }
         public int UnreadToRead(User obj)
         {
-            string change = String.Format("update Detail set Dread=1 where Duser='{0}' and Dread=0", obj.u_name);
+            string change = String.Format("update Detail set Dread=1 where Dmac='{0}' and Dread=0", obj.MacAdd);
             return SqlHelper.ExecuteNonQuery(change);
         }
         public List<Detail> FindOne(User obj)
         {
             List<Detail> list = new List<Detail>();
-            string sql = String.Format("select * from Detail where Duser='{0}' ORDER BY Ddatetime ASC", obj.u_name);
+            string sql = String.Format("select * from Detail where Dmac='{0}' ORDER BY Ddatetime ASC", obj.MacAdd);
             DataTable dt = SqlHelper.ExecuteQuery(sql);
             if (dt != null)
             {
@@ -50,7 +50,7 @@ namespace BS
                     s = new Detail
                     {
                         DetId = Convert.ToInt32(row["Did"]),
-                        DetUser = row["Duser"].ToString(),
+                        DetMac = row["Dmac"].ToString(),
                         DetSpeak = row["Dspeak"].ToString(),
                         DetType = Convert.ToInt32(row["Dtype"]),
                         DetCont = row["Dcont"].ToString(),
@@ -65,7 +65,7 @@ namespace BS
         public List<Detail> FindOneUnread(User obj)
         {
             List<Detail> list = new List<Detail>();
-            string sql = String.Format("select * from Detail where Duser='{0}' and Dread=0 ORDER BY Ddatetime ASC", obj.u_name);
+            string sql = String.Format("select * from Detail where Dmac='{0}' and Dread=0 ORDER BY Ddatetime ASC", obj.MacAdd);
             DataTable dt = SqlHelper.ExecuteQuery(sql);
             if (dt != null)
             {
@@ -75,7 +75,7 @@ namespace BS
                     s = new Detail
                     {
                         DetId = Convert.ToInt32(row["Did"]),
-                        DetUser = row["Duser"].ToString(),
+                        DetMac = row["Dmac"].ToString(),
                         DetSpeak = row["Dspeak"].ToString(),
                         DetType = Convert.ToInt32(row["Dtype"]),
                         DetCont = row["Dcont"].ToString(),
@@ -87,17 +87,17 @@ namespace BS
             }
             return list;
         }
-        public List<string> FindUnread() //被使用
+        public List<string> FindUnread() //未被使用
         {
             List<string> list = new List<string>();
-            string sql = String.Format("select DISTINCT Duser from Detail where Dread = 0");
+            string sql = String.Format("select DISTINCT Dmac from Detail where Dread = 0");
             DataTable dt = SqlHelper.ExecuteQuery(sql);
             if (dt != null)
             {
                 string s = null;
                 foreach (DataRow row in dt.Rows)
                 {
-                    s = row["Duser"].ToString();
+                    s = row["Dmac"].ToString();
                     list.Add(s);
                 }
             }

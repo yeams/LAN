@@ -87,7 +87,7 @@ namespace BS
                     //System.Windows.MessageBox.Show(content);
                     s = new Detail
                     {
-                        DetUser = ghost.u_name,
+                        DetMac = ghost.MacAdd,
                         DetSpeak = ghost.u_name,
                         DetType = 0,
                         DetCont = content,
@@ -122,7 +122,7 @@ namespace BS
                     //4、收发图片的信息插入数据库！！！！！！
                     s = new Detail
                     {
-                        DetUser = ghost.u_name,
+                        DetMac = ghost.MacAdd,
                         DetSpeak = ghost.u_name,
                         DetType = 2,
                         DetCont = fileName,
@@ -149,7 +149,7 @@ namespace BS
             FileWirter.Close();
             s = new Detail
             {
-                DetUser = ghost.u_name,
+                DetMac = ghost.MacAdd,
                 DetSpeak = ghost.u_name,
                 DetType = 1,
                 DetCont = fileName,

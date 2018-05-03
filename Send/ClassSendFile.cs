@@ -15,12 +15,12 @@ namespace BS
         private OpenFileDialog fileDlg;
         DetailDAL IntoDB = new DetailDAL();//实例化对数据库的操作类DetailDAL
         Detail s = null;//一条需要插入数据库的信息
-        string DBUserName = null;
+        string DBMac = null;
         string DBSpeakName = null;
         public ClassSendFile(OpenFileDialog fileDlg,string name1,string name2)
         {
             this.fileDlg = fileDlg;
-            this.DBUserName = name1;
+            this.DBMac = name1;
             this.DBSpeakName = name2;
         }
         public void SendFile(object state)
@@ -51,7 +51,7 @@ namespace BS
 
             s = new Detail
             {
-                DetUser = DBUserName,
+                DetMac = DBMac,
                 DetSpeak = DBSpeakName,
                 DetType = 1,
                 DetCont = filePathName,
